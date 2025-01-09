@@ -1,22 +1,32 @@
 class Solution {
     public List<List<Integer>> findTriplets(int[] arr) {
-        
-        ArrayList<List<Integer>> res = new ArrayList<>();
+        // Your code here
+        HashSet<ArrayList<Integer>> resSet = new HashSet<>();
         int n = arr.length;
+        HashMap<Integer, List<int[]>> mp = new HashMap<>();
         
         for(int i=0; i<n; i++){
-            for(int j=i+1; j<n-1; j++){
-                for(int k=j+1; k<n; k++){
-                    if(arr[i] + arr[j] + arr[k] == 0){
-                        ArrayList<Integer> triplet = new ArrayList<>();
-                        triplet.add(i);
-                        triplet.add(j);
-                        triplet.add(k);
-                        res.add(triplet);
+            for(int j=i+1; j<n; j++){
+                mp.computeIfAbsent(arr[i] + arr[j], k -> new ArrayList<>())
+                .add(new int[]{i, j});
+            }
+        }
+        
+        for(int i=0; i<n; i++){
+            int rem = -arr[i];
+            
+            if(mp.containsKey(rem)){
+                List<int[]> pairs = mp.get(rem);  
+                for(int [] p : pairs){
+                    if(p[0] != i && p[1] != i){
+                        ArrayList<Integer> curr = new ArrayList<>
+                        (Arrays.asList(i, p[0], p[1])); 
+                        Collections.sort(curr);
+                        resSet.add(curr);
                     }
                 }
             }
         }
-        return res;
+        return new ArrayList<>(resSet);
     }
 }
