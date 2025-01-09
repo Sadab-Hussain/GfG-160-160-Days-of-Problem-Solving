@@ -1,6 +1,6 @@
 class Solution {
     public List<List<Integer>> findTriplets(int[] arr) {
-        // Your code here
+        
         ArrayList<List<Integer>> res = new ArrayList<>();
         int n = arr.length;
         
