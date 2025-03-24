@@ -1,3 +1,4 @@
+
 class Solution {
     int countWays(int n) {
         // your code here
